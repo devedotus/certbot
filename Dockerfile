@@ -1,10 +1,8 @@
 FROM certbot/certbot
 
+# going to use custom directories so no more mkdir/chown needed
 RUN set -x \
     && addgroup -g 501 -S certbot \
-    && adduser -u 501 -D -S -h /etc/letsencrypt certbot certbot \
-    && mkdir /var/log/letsencrypt \
-    && chown -R certbot:500 /var/log/letsencrypt \
-    && chown -R certbot:500 /etc/letsencrypt
+    && adduser -u 501 -D -S -h /opt/certbot certbot certbot
 
 USER certbot
